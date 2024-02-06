@@ -6,14 +6,19 @@ const uuid = require("uuid");
 
 // GET route for retrieving data
 notesRouter.get(
-  "/notes",
+  "/",
   (req, res) => {
-    res.json("../db/db.json");
+    // res.json("../db/db.json");
+    fs.readFile("./db/db.json", (err, data) => {
+      console.log(err)
+      console.log(JSON.parse(data))
+      res.json(JSON.parse(data))
+    })
   }
 );
 
 // POST route for submitting note
-notesRouter.post("/notes", (req, res) => {
+notesRouter.post("/", (req, res) => {
 
   // Destructuring assignment for items in req.body
   const { title, text } = req.body;
@@ -29,14 +34,14 @@ notesRouter.post("/notes", (req, res) => {
     };
 
     // Convert data to string to be saved
-    fs.readFile("../db/db.json", "utf8", (err, data) => {
+    fs.readFile("./db/db.json", "utf8", (err, data) => {
       if (err) {
         console.error(err);
       } else {
         const parsedNote = JSON.parse(data);
         parsedNote.push(newNote);
         const stringedNote = JSON.stringify(newNote);
-        fs.writeFile("../db/db.json", stringedNote, (error) =>
+        fs.writeFile("./db/db.json", stringedNote, (error) =>
           error
             ? console.log(error)
             : console.log(`New note has been written to JSON file!`)
