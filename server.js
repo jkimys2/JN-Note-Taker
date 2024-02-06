@@ -20,7 +20,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/api", apiRouter);
 
 // GET route to navigate to notes.html from the index.html
-app.get("/notes", (req, res) => {
+app.get("api/notes", (req, res) => {
     res.sendFile(path.join(__dirname, "../public/notes.html"));
   });  
 
