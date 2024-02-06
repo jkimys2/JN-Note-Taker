@@ -50,8 +50,9 @@ notesRouter.post("/", (req, res) => {
     console.log(response);
     res.status(201).json(response);
   } else {
-    res.status(500).json("Error in posting note");
+    res.status(404).json("Error in posting note");
   }
 });
 
+// export notesRouter
 module.exports = notesRouter;
