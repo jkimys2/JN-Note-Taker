@@ -15,18 +15,17 @@ app.use(express.static("public"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-
 // Send all requests that begin with /api to router file
 app.use("/api", apiRouter);
 
 // GET route to navigate to notes.html from the index.html
 app.get("/notes", (req, res) => {
-    res.sendFile(path.join(__dirname, "../public/notes.html"));
-  });  
+  res.sendFile(path.join(__dirname, "./public/notes.html"));
+});
 
 // GET route to return to index.html when user attempts to visit routes that don't exist
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "../public/index.html"));
+  res.sendFile(path.join(__dirname, "./public/index.html"));
 });
 
 // app listener to start server
