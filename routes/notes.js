@@ -7,11 +7,10 @@ const uuid = require("uuid");
 // GET route for retrieving data
 notesRouter.get(
   "/",
-  (req,
-  (res) => {
+  (req, res) => {
     console.info(`${req.method} request received for notes`);
     res.sendFile(path.join(__dirname, "../db/db.json"));
-  })
+  }
 );
 
 // POST route for submitting note
