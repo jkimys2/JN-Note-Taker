@@ -8,7 +8,7 @@ const app = express();
 PORT = process.env.PORT || 3001;
 
 // import router
-const apiRouter = require("./routes/index");
+const apiRouter = require("./routes/apiRouter");
 
 //middleware
 app.use(express.static("public"));
