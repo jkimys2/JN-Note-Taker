@@ -13,4 +13,4 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // app listener to start server
-app.listen(PORT, () => console.log(`Note Taker app listening at http://localhost:${PORT}!`))
+app.listen(PORT, () => console.log(`Note Taker app listening at http://localhost:${PORT}!`));
