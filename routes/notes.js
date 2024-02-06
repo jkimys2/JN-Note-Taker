@@ -43,5 +43,15 @@ notesRouter.post("/", (req, res) => {
         );
       }
     });
+    const response = {
+      status: "success",
+      body: newNote,
+    };
+    console.log(response);
+    res.status(201).json(response);
+  } else {
+    res.status(500).json("Error in posting note");
   }
 });
+
+module.exports = notesRouter;
