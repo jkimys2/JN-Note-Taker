@@ -6,7 +6,7 @@ const uuid = require("uuid");
 
 // GET route for retrieving data
 notesRouter.get(
-  "/",
+  "/notes",
   (req, res) => {
     console.info(`${req.method} request received for notes`);
     res.sendFile(path.join(__dirname, "../db/db.json"));
@@ -14,7 +14,7 @@ notesRouter.get(
 );
 
 // POST route for submitting note
-notesRouter.post("/", (req, res) => {
+notesRouter.post("/notes", (req, res) => {
   console.info(`${req.method} request received to submit note`);
 
   // destructuring assignment for items in req.body
