@@ -1,4 +1,4 @@
-// import dependencies
+// import modules
 const apiRouter = require("express").Router();
 
 // import files containing routes

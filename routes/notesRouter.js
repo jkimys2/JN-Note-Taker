@@ -1,48 +1,44 @@
-// import dependencies
+// import modules
 const notesRouter = require("express").Router();
 const fs = require("fs");
 const path = require("path");
-const uuid = require("uuid");
+const { v4: uuidv4 } = require("uuid");
 
 // GET route for retrieving data
-notesRouter.get(
-  "/",
-  (req, res) => {
-    // res.json("../db/db.json");
-    fs.readFile("./db/db.json", (err, data) => {
-      res.json(JSON.parse(data))
-    })
-  }
-);
+notesRouter.get("/", (req, res) => {
+  fs.readFile("./db/db.json", (err, data) => {
+    res.json(JSON.parse(data));
+  });
+});
 
 // POST route for submitting note
 notesRouter.post("/", (req, res) => {
-
   // Destructuring assignment for items in req.body
   const { title, text } = req.body;
 
   // Save if all the required properties are present
   if (title && text) {
-
     // Variable for objects to be saved
     const newNote = {
       title,
       text,
-      id: uuid(),
+      id: uuidv4(),
     };
 
-    // Convert data to string to be saved
+    // Obtain existing reviews
     fs.readFile("./db/db.json", (err, data) => {
       if (err) {
         console.error(err);
       } else {
-        const parsedNote = JSON.parse(data);
-        parsedNote.push(newNote);
-        // const stringedNote = JSON.stringify(newNote);
-        fs.writeFile("./db/db.json", JSON.stringify(parsedNote), (error) =>
-          error
-            ? console.log(error)
-            : console.log(`New note has been written to JSON file!`)
+        // Convert string into JSON object
+        const parsedNotes = JSON.parse(data);
+        // Add new note
+        parsedNotes.push(newNote);
+        // Write updated note back to the file
+        fs.writeFile("./db/db.json", JSON.stringify(parsedNotes), (writeErr) =>
+          writeErr
+            ? console.log(writeErr)
+            : console.info(`New note has been written to JSON file!`)
         );
       }
     });
@@ -54,7 +50,7 @@ notesRouter.post("/", (req, res) => {
     };
 
     console.log(response);
-    res.status(201).json(response);
+    res.status(200).json(response);
   } else {
     res.status(404).json("Error in posting note");
   }
