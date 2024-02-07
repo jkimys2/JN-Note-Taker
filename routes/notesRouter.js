@@ -56,5 +56,6 @@ notesRouter.post("/", (req, res) => {
   }
 });
 
+notesRouter.delete()
 // export notesRouter
 module.exports = notesRouter;
