@@ -13,11 +13,13 @@ notesRouter.get("/", (req, res) => {
 
 // POST route for submitting note
 notesRouter.post("/", (req, res) => {
+
   // Destructuring assignment for items in req.body
   const { title, text } = req.body;
 
   // Save if all the required properties are present
   if (title && text) {
+
     // Variable for objects to be saved
     const newNote = {
       title,
@@ -43,7 +45,7 @@ notesRouter.post("/", (req, res) => {
       }
     });
 
-    // Write string to file
+    // Write response
     const response = {
       status: "success",
       body: newNote,
@@ -56,6 +58,26 @@ notesRouter.post("/", (req, res) => {
   }
 });
 
-notesRouter.delete()
+// DELETE route to delete notes
+notesRouter.delete("/:id", (req, res) => {
+ fs.readFile("./db/db.json", (err, data) => {
+      if (err) {
+        console.error(err);
+      } else {
+        // Convert string into JSON object
+        const parsedNotes = JSON.parse(data);
+        // Remove new note
+        const updatedNotes = parsedNotes.filter(note => note.id !== req.params.id)
+        // Write updated note back to the file
+        fs.writeFile("./db/db.json", JSON.stringify(updatedNotes), (writeErr) =>
+          writeErr
+            ? console.log(writeErr)
+            : console.info(`New note has been written to JSON file!`)
+        );
+      }
+    });
+    res.send(200);
+})
+
 // export notesRouter
 module.exports = notesRouter;
