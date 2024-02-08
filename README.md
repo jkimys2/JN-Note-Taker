@@ -34,4 +34,21 @@ For this application you will need the following:
 
 ## Usage 
 
-Once you have all the files in VS Code, you will need to install the dependencies. You will need to run ```nodemon server.js``` into your integrated terminal. This will
+Once you have all the files in VS Code, you will need to install the dependencies. You will need to run ```nodemon server.js``` into your integrated terminal; this will run the app on the local host!
+
+You can also test the application on the deployed page. You can see how the deployed app appears below:
+
+![main-screen](./public/assets/main-screen.png)
+![notes-screen](./public/assets/notes-screen.png)
+
+
+## Credits
+
+Thank you Andrew B., Chris B., and Michael H. for all your help! 😊👍
+
+
+## Links
+
+[GitHub Repository](https://github.com/jkimys2/JN-Note-Taker)
+
+[Deployed Heroku Page](https://jn-note-taker-44e454eac4d0.herokuapp.com/)
