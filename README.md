@@ -2,7 +2,7 @@
 
 ## Description
 
-Through this challenge, I was able to create an application that helps users write and save notes. The app uses Express.js in order to save and retrieve note data from a JSON file. The project was completed by following the acceptance criterias listed below:
+Through this challenge, I was able to create an application that helps users write, save, and delete notes. The app uses Express.js in order to save and retrieve note data from a JSON file. The project was completed by following the acceptance criterias listed below:
 
 ```
 GIVEN a note-taking application
